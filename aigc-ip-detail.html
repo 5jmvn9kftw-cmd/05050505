@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AIGC设计IP项目｜孙思婷作品集</title>
+    <style>
+      :root { color-scheme: dark; font-family: "Manrope", "Noto Sans SC", "PingFang SC", sans-serif; background: #05070b; color: #f5f7fa; }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; min-width: 320px; background: #05070b; }
+      a { color: inherit; text-decoration: none; }
+      .page-shell { position: relative; min-height: 100vh; overflow: hidden; isolation: isolate; }
+      .page-shell::before, .page-shell::after { content: ""; position: fixed; z-index: -1; width: 34vw; height: 34vw; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+      .page-shell::before { top: 8%; right: 5%; background: #5482d52e; }
+      .page-shell::after { bottom: 18%; left: 3%; background: #1475a71f; }
+      .background-video { position: fixed; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .22; pointer-events: none; }
+      .background-wash { position: fixed; z-index: -1; inset: 0; background: linear-gradient(180deg, #05070bdb 0%, #080b1199 42%, #05070be8 100%); pointer-events: none; }
+      .nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; width: min(1700px, calc(100% - 72px)); margin: 0 auto; padding: 18px 0; border-bottom: 1px solid #ffffff12; backdrop-filter: blur(14px); }
+      .brand { font-size: .78rem; letter-spacing: .18em; color: #dff5ff; }
+      .nav-links { display: flex; gap: 30px; color: #d9e1edb8; font-size: .8rem; }
+      .nav-links a { transition: color .2s ease, transform .2s ease, text-shadow .2s ease; }
+      .nav-links a:hover { color: #78c2ff; transform: translateY(-3px); text-shadow: 0 0 12px #4092ff99; }
+      .back-link { padding: 9px 16px; border: 1px solid #78c2ff66; border-radius: 999px; color: #dff5ff; font-size: .78rem; }
+      .gallery { display: grid; gap: 0; width: min(1062px, calc(100% - 40px)); margin: 0 auto; padding-bottom: 120px; }
+      .gallery figure { margin: 0; overflow: hidden; border: 0; background: transparent; }
+      .gallery img { display: block; width: 100%; height: auto; }
+      .contact { position: relative; padding: 100px 20px 150px; border-top: 1px solid #ffffff14; text-align: center; overflow: hidden; }
+      .contact h2 { position: relative; z-index: 1; margin: 0; font-size: clamp(1.5rem, 3vw, 2.7rem); font-weight: 350; }
+      .smile-arc { position: absolute; z-index: 0; bottom: -120px; left: 50%; width: min(620px, 70vw); height: 250px; border-radius: 50% 50% 0 0 / 100% 100% 0 0; transform: translateX(-50%); background: linear-gradient(120deg, #dff5ff, #78c2ff 46%, #4092ff); opacity: .8; }
+      .face { position: absolute; top: 68px; left: 50%; transform: translateX(-50%); }
+      .eyes { display: flex; justify-content: space-between; width: 58px; }
+      .eyes i { width: 11px; height: 19px; border-radius: 50%; background: #07101b; animation: blink 3s ease-in-out 1s infinite; }
+      .mouth { width: 26px; height: 14px; margin: 9px auto 0; border: 3px solid #07101b; border-top: 0; border-radius: 0 0 18px 18px; }
+      @keyframes blink { 0%, 16%, 22%, 100% { transform: scaleY(1); } 18%, 20% { transform: scaleY(.1); } }
+      @media (max-width: 700px) { .nav { width: calc(100% - 32px); } .nav-links { display: none; } .gallery { width: 100%; } }
+      @media (prefers-reduced-motion: reduce) { .eyes i { animation: none; } html { scroll-behavior: auto; } }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <video class="background-video" autoplay muted loop playsinline aria-hidden="true" src="/assets/hero-clouds.mp4"></video>
+      <div class="background-wash"></div>
+      <nav class="nav" aria-label="主导航">
+        <a class="brand" href="index.html">SUNSITING / PORTFOLIO</a>
+        <div class="nav-links"><a href="index.html#home">首页</a><a href="index.html#profile">经历</a><a href="index.html#projects">项目</a><a href="index.html#strengths">优势</a><a href="index.html#contact">联系</a></div>
+        <a class="back-link" href="index.html#projects">返回项目</a>
+      </nav>
+      <main>
+        <section class="gallery" aria-label="AIGC设计IP项目详情">
+          <figure><img src="/assets/aigc-ip-detail/46.jpg" alt="AIGC设计IP项目详情 46" /></figure>
+          <figure><img src="/assets/aigc-ip-detail/47.jpg" alt="AIGC设计IP项目详情 47" /></figure>
+          <figure><img src="/assets/aigc-ip-detail/48.jpg" alt="AIGC设计IP项目详情 48" /></figure>
+          <figure><img src="/assets/aigc-ip-detail/49.jpg" alt="AIGC设计IP项目详情 49" /></figure>
+          <figure><img src="/assets/aigc-ip-detail/50.jpg" alt="AIGC设计IP项目详情 50" /></figure>
+          <figure><img src="/assets/aigc-ip-detail/51.jpg" alt="AIGC设计IP项目详情 51" /></figure>
+          <figure><img src="/assets/aigc-ip-detail/52.jpg" alt="AIGC设计IP项目详情 52" /></figure>
+        </section>
+      </main>
+      <footer class="contact" id="contact">
+        <div class="smile-arc"><div class="face"><div class="eyes"><i></i><i></i></div><div class="mouth"></div></div></div>
+        <h2>让我们一起创造更多兼顾审美、效率与系统性的视觉吧</h2>
+      </footer>
+    </div>
+  </body>
+</html>

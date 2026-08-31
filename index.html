@@ -28,5 +28,175 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      var style = document.createElement('style');
+      style.textContent = '.project-card { cursor: pointer; } .project-tags .is-hidden-by-request { display: none; } .project-hover-gallery.is-project-4 .project-hover-gallery-inner { justify-content: flex-end; transform: none !important; } .project-hover-gallery.is-project-4 .project-preview-item:nth-child(2) { display: none; }';
+      document.head.appendChild(style);
+
+      var hideSkillTag = function () {
+        document.querySelectorAll('.project-tags .specular-pill').forEach(function (tag) {
+          if (tag.textContent.trim() === 'Skill沉淀') tag.classList.add('is-hidden-by-request');
+        });
+      };
+
+      var timers = new WeakMap();
+      var setupProjectZone = function (zone) {
+        if (zone.dataset.hoverDelayReady) return;
+        zone.dataset.hoverDelayReady = 'true';
+
+        zone.addEventListener('pointerleave', function (event) {
+          var lockedUntil = Number(zone.dataset.lockedUntil || 0);
+          if (Date.now() >= lockedUntil) return;
+          event.stopPropagation();
+        });
+
+        var detailPreview = zone.querySelector('.project-preview-item:first-of-type img');
+        if (detailPreview && !detailPreview.dataset.detailLinkReady) {
+          detailPreview.dataset.detailLinkReady = 'true';
+          detailPreview.addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            window.location.href = 'kunlun-ip-detail.html';
+          });
+        }
+
+        zone.addEventListener('pointerenter', function () {
+          zone.querySelectorAll('.project-card').forEach(function (card) {
+            if (card.dataset.hoverDelayReady) return;
+            card.dataset.hoverDelayReady = 'true';
+            card.addEventListener('pointerleave', function () {
+              var timer = setTimeout(function () {
+                zone.dataset.lockedUntil = '0';
+                zone.dispatchEvent(new PointerEvent('pointerleave', { bubbles: false }));
+              }, 10000);
+              timers.set(card, timer);
+              zone.dataset.lockedUntil = String(Date.now() + 10000);
+            });
+            card.addEventListener('pointerenter', function () {
+              clearTimeout(timers.get(card));
+              zone.dataset.lockedUntil = '0';
+            });
+            card.addEventListener('click', function () {
+              clearTimeout(timers.get(card));
+              zone.dataset.lockedUntil = String(Date.now() + 10000);
+            });
+          });
+
+        });
+      };
+
+      new MutationObserver(function () {
+        hideSkillTag();
+        document.querySelectorAll('.project-interaction-zone').forEach(setupProjectZone);
+      }).observe(document.body, { childList: true, subtree: true });
+      hideSkillTag();
+
+      document.addEventListener('click', function (event) {
+        var anniversaryHero = event.target.closest('.hero-float-card:nth-of-type(4)');
+        if (anniversaryHero) {
+          event.preventDefault();
+          event.stopPropagation();
+          window.location.href = 'anniversary-detail.html';
+          return;
+        }
+
+        var programmerHero = event.target.closest('.hero-float-card:nth-of-type(3)');
+        if (programmerHero) {
+          event.preventDefault();
+          event.stopPropagation();
+          window.location.href = 'programmer-day-detail.html';
+          return;
+        }
+
+        var recruitmentHero = event.target.closest('.hero-float-card:nth-of-type(2)');
+        if (recruitmentHero) {
+          event.preventDefault();
+          event.stopPropagation();
+          window.location.href = 'campus-recruitment-detail.html';
+          return;
+        }
+
+        var aigcTag = event.target.closest('.project-tags .specular-pill');
+        if (aigcTag && aigcTag.textContent.trim() === 'AIGC设计IP项目') {
+          event.preventDefault();
+          event.stopPropagation();
+          window.location.href = 'aigc-ip-detail.html';
+          return;
+        }
+
+        var operationTag = event.target.closest('.project-tags .specular-pill');
+        var operationCards = document.querySelectorAll('.project-card');
+        if (operationTag && operationCards[2] === operationTag.closest('.project-card') && ['歌王争霸赛', '端午特别计划', '亲密大作战', '火花四岁啦'].indexOf(operationTag.textContent.trim()) !== -1) {
+          event.preventDefault();
+          event.stopPropagation();
+          window.location.href = 'huohua-operation-detail.html';
+          return;
+        }
+
+        var annualHero = event.target.closest('.hero-float-card:nth-of-type(5), .hero-float-card:nth-of-type(6)');
+        if (annualHero) {
+          event.preventDefault();
+          event.stopPropagation();
+          window.location.href = 'kingsoft-annual-detail.html';
+          return;
+        }
+
+        var assetTag = event.target.closest('.project-card:first-of-type .project-tags .specular-pill');
+        var projectCards = document.querySelectorAll('.project-card');
+        if (assetTag && projectCards[0] === assetTag.closest('.project-card') && assetTag.textContent.trim() === 'IP虚拟资产库') {
+          event.preventDefault();
+          event.stopPropagation();
+          window.location.href = 'kunlun-ip-detail.html';
+          return;
+        }
+
+        var programmerTag = event.target.closest('.project-tags .specular-pill');
+        if (programmerTag && projectCards[0] === programmerTag.closest('.project-card') && programmerTag.textContent.trim() === '程序员节视觉设计') {
+          event.preventDefault();
+          event.stopPropagation();
+          window.location.href = 'programmer-day-detail.html';
+          return;
+        }
+
+        var recruitmentTag = event.target.closest('.project-tags .specular-pill');
+        if (recruitmentTag && projectCards[0] === recruitmentTag.closest('.project-card') && recruitmentTag.textContent.trim() === '校招视觉设计') {
+          event.preventDefault();
+          event.stopPropagation();
+          window.location.href = 'campus-recruitment-detail.html';
+          return;
+        }
+
+        var annualTag = event.target.closest('.project-tags .specular-pill');
+        if (annualTag && projectCards[1] === annualTag.closest('.project-card') && (annualTag.textContent.trim() === '2026金山云年会视觉设计' || annualTag.textContent.trim() === '2026金山云颁奖视觉设计')) {
+          event.preventDefault();
+          event.stopPropagation();
+          window.location.href = 'kingsoft-annual-detail.html';
+          return;
+        }
+
+        var anniversaryTag = event.target.closest('.project-card:first-of-type .project-tags .specular-pill');
+        if (anniversaryTag && projectCards[0] === anniversaryTag.closest('.project-card') && anniversaryTag.textContent.trim() === '司庆视觉设计') {
+          event.preventDefault();
+          event.stopPropagation();
+          window.location.href = 'anniversary-detail.html';
+          return;
+        }
+
+        var preview = event.target.closest('.project-preview-item');
+        var previews = document.querySelectorAll('.project-preview-item');
+        if (!preview) return;
+        event.preventDefault();
+        event.stopPropagation();
+        var previewText = preview.textContent.trim();
+        if (previewText.indexOf('AIGC设计IP项目') !== -1) window.location.href = 'aigc-ip-detail.html';
+        else if (previewText.indexOf('歌王争霸赛') !== -1 || previewText.indexOf('端午特别计划') !== -1 || previewText.indexOf('亲密大作战') !== -1 || previewText.indexOf('火花四岁啦') !== -1) window.location.href = 'huohua-operation-detail.html';
+        else if (previewText.indexOf('校招视觉设计') !== -1) window.location.href = 'campus-recruitment-detail.html';
+        else if (previewText.indexOf('程序员节视觉设计') !== -1) window.location.href = 'programmer-day-detail.html';
+        else if (previewText.indexOf('司庆视觉设计') !== -1) window.location.href = 'anniversary-detail.html';
+        else if (previewText.indexOf('2026金山云年会视觉设计') !== -1 || previewText.indexOf('2026金山云颁奖视觉设计') !== -1) window.location.href = 'kingsoft-annual-detail.html';
+        else if (previewText.indexOf('IP虚拟资产库') !== -1) window.location.href = 'kunlun-ip-detail.html';
+        else return;
+      }, true);
+    </script>
   </body>
 </html>
