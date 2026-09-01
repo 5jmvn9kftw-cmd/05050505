@@ -36,6 +36,10 @@
         text-align: center;
       }
 
+      .contact-copy h2 span:nth-child(3) {
+        display: none !important;
+      }
+
     </style>
     <script type="module" crossorigin src="/assets/index-Bw6V44PC.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-bKSvauo7.css">
@@ -51,6 +55,13 @@
         document.querySelectorAll('.project-tags .specular-pill').forEach(function (tag) {
           if (tag.textContent.trim() === 'Skill沉淀') tag.classList.add('is-hidden-by-request');
         });
+      };
+
+      var updateContactCopy = function () {
+        var lines = document.querySelectorAll('.contact-copy h2 span');
+        if (lines.length > 1 && lines[1].textContent !== '更多审美高、效率高与系统性的视觉项目') {
+          lines[1].textContent = '更多审美高、效率高与系统性的视觉项目';
+        }
       };
 
       var timers = new WeakMap();
@@ -101,9 +112,11 @@
 
       new MutationObserver(function () {
         hideSkillTag();
+        updateContactCopy();
         document.querySelectorAll('.project-interaction-zone').forEach(setupProjectZone);
       }).observe(document.body, { childList: true, subtree: true });
       hideSkillTag();
+      updateContactCopy();
 
       document.addEventListener('click', function (event) {
         var anniversaryHero = event.target.closest('.hero-float-card:nth-of-type(4)');
