@@ -25,7 +25,8 @@
       .gallery { display: grid; gap: 0; width: min(1062px, calc(100% - 40px)); margin: 0 auto; padding-bottom: 120px; }
       .gallery figure { margin: 0; overflow: hidden; border: 0; background: transparent; }
       .gallery figure:first-child { width: 100vw; margin-left: calc(50% - 50vw); }
-      .gallery img { display: block; width: 100%; height: auto; }
+      .gallery img, .gallery video { display: block; width: 100%; height: auto; }
+      .gallery video { aspect-ratio: 16 / 9; object-fit: cover; background: #05070b; }
       .contact { position: relative; padding: 100px 20px 150px; border-top: 1px solid #ffffff14; text-align: center; overflow: hidden; }
       .contact h2 { position: relative; z-index: 1; margin: 0; font-size: clamp(1.5rem, 3vw, 2.7rem); font-weight: 350; }
       .smile-arc { position: absolute; z-index: 0; bottom: -120px; left: 50%; width: min(620px, 70vw); height: 250px; border-radius: 50% 50% 0 0 / 100% 100% 0 0; transform: translateX(-50%); background: linear-gradient(120deg, #dff5ff, #78c2ff 46%, #4092ff); opacity: .8; }
@@ -51,6 +52,7 @@
         <section class="gallery" aria-label="校招视觉设计项目详情">
           <figure><img src="/assets/campus-recruitment-detail/56.jpg" alt="校招开放日主视觉" /></figure>
           <figure><img src="/assets/campus-recruitment-detail/37.jpg" alt="校招视觉设计详情 37" /></figure>
+          <figure><video controls playsinline preload="metadata" aria-label="校招动态视觉"><source src="/assets/campus-recruitment-detail/campus-motion.mp4" type="video/mp4" />你的浏览器不支持视频播放。</video></figure>
           <figure><img src="/assets/campus-recruitment-detail/38.jpg" alt="校招视觉设计详情 38" /></figure>
           <figure><img src="/assets/campus-recruitment-detail/39.jpg" alt="校招视觉设计详情 39" /></figure>
           <figure><img src="/assets/campus-recruitment-detail/40.jpg" alt="校招视觉设计详情 40" /></figure>
